@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="gray100">#FAFAFA</color>
+    <color name="gray200">#f5f5f5</color>
+    <color name="gray300">#E0E0E0</color>
+    <color name="gray400">#BDBDBD</color>
+    <color name="gray500">#9E9E9E</color>
+    <color name="gray600">#757575</color>
+    <color name="gray700">#616161</color>
+    <color name="gray800">#424242</color>
+    <color name="gray900">#212121</color>
+    <color name="gray950">#121212</color>
+    <color name="gray900_t50">#50212121</color>
+
+    <color name="indigo500">#3F51B5</color>
+
+    <color name="blue50">#E3F2FD</color>
+    <color name="blue100">#BBDEFB</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue500">#049fe7</color>
+    <color name="blue700">#1976D2</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+
+    <color name="red100">#FFCDD2</color>
+    <color name="red200">#EF9A9A</color>
+    <color name="red300">#E57373</color>
+    <color name="red400">#CF6679</color>
+    <color name="red500">#e43f5a</color>
+    <color name="red900">#b71c1c</color>
+
+
+    <color name="yellow400">#FFEE58</color>
+    <color name="yellow500">#FFEB3B</color>
+    <color name="yellow700">#FFD600</color>
+
+    <color name="amber700">#FFAB00</color>
+
+    <color name="teal500">#009688</color>
+    <color name="teal700">#00796B</color>
+
+    <color name="bluegray50">#ECEFF1</color>
+</resources>

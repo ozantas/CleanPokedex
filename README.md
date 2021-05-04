@@ -24,7 +24,7 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack l
 
 <img src="https://pokeapi.co/static/pokeapi_256.888baca4.png" width="20%"/>
 <br>
-Clean Pokedex uses [PokeAPI](https://pokeapi.co/) to get Pokemon data.
+Clean Pokedex uses https://pokeapi.co/ to get Pokemon data.
 
 # License
 ```xml

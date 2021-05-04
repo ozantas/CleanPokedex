@@ -1,4 +1,4 @@
-<h1 align="center">Pokedex</h1>
+<h1 align="center">Clean Pokedex</h1>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
@@ -10,7 +10,6 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack l
 </p>
 
 <img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/list.jpg" width="20%"/> <img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/detail.jpg" width="20%"/>
-
 
 ## Tech Stack
 - %100 Kotlin

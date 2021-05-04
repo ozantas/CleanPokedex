@@ -1,4 +1,4 @@
-<h1 align="center"> Clean Pokedex</h1>
+<h1 align="center">Pokedex</h1>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
@@ -9,12 +9,13 @@
 Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack libraries.
 </p>
 
-<p align="center">
-<img src="/screenshots/screenshot.png"/>
-</p>
+<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/list.jpg" width="20%"/>
+|
+<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/detail.jpg" width="20%"/>
+
 
 ## Tech Stack
-- Kotlin
+- %100 Kotlin
 - Coroutines
 - Hilt
 - Room
@@ -24,8 +25,9 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack l
 
 ## API
 
+<img src="https://pokeapi.co/static/pokeapi_256.888baca4.png" width="20%"/>
+<br>
 Clean Pokedex uses [PokeAPI](https://pokeapi.co/) to get Pokemon data.
-![](https://pokeapi.co/static/pokeapi_256.888baca4.png)
 
 # License
 ```xml

@@ -9,9 +9,7 @@
 Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack libraries.
 </p>
 
-<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/list.jpg" width="20%"/>
-|
-<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/detail.jpg" width="20%"/>
+<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/list.jpg" width="20%"/>|<img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/detail.jpg" width="20%"/>
 
 
 ## Tech Stack
@@ -21,7 +19,7 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt and Jetpack l
 - Room
 - Glide
 - Retrofit
-- Material Components
+- Material Components (with Dark Mode Support)
 
 ## API
 

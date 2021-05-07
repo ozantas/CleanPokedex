@@ -14,32 +14,50 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/theme_background"
         android:clickable="true"
         android:focusable="true"
+        android:theme="@style/theme_background"
         tools:context=".ui.detail.PokemonDetailFragment">
 
         <ImageView
             android:id="@+id/ivPokemon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintVertical_bias=".1"
-            app:layout_constraintBottom_toTopOf="@+id/tvName"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_pokeball" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".3" />
+
+        <TextView
+            android:id="@+id/tvPokemonId"
+            style="@style/tv_pokemon_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@+id/tvName"
+            app:layout_constraintEnd_toEndOf="@id/ivPokemon"
+            app:layout_constraintStart_toStartOf="@id/ivPokemon"
+            app:layout_constraintTop_toBottomOf="@id/guidelineImage"
+            tools:text="#5" />
 
         <TextView
             android:id="@+id/tvName"
             style="@style/tv_pokemon_name_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tvType"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineIdentity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivPokemon"
+            app:layout_constraintTop_toBottomOf="@+id/tvPokemonId"
             tools:text="Charizard" />
 
         <TextView
@@ -47,32 +65,63 @@
             style="@style/tv_pokemon_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintBottom_toTopOf="@id/guidelineIdentity"
             tools:text="Fire" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineIdentity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
+
+        <TextView
+            android:id="@+id/tvHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tv_physical_info"
+            app:physicalInfo="@{viewModel.pokemonDetail.height}"
+            app:layout_constraintEnd_toStartOf="@+id/tvWeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineIdentity"
+            tools:text="1.2 m" />
+
+        <TextView
+            android:id="@+id/tvWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tv_physical_info"
+            app:physicalInfo="@{viewModel.pokemonDetail.weight}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvHeight"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvHeight"
+            tools:textSize="24sp"
+            tools:text="100 kg" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
+            app:verticalItemSpace="@{16}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tvType"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeight"
             tools:itemCount="5"
             tools:listitem="@layout/item_pokemon_stat" />
 
         <ProgressBar
+            android:id="@+id/progressBar"
+            visibleIf="@{viewModel.progressVisibility}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            visibleIf="@{viewModel.progressVisibility}"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

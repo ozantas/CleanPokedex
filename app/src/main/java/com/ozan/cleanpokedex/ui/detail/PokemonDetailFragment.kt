@@ -8,6 +8,7 @@ import com.ozan.cleanpokedex.databinding.FragPokemonDetailBinding
 import com.ozan.cleanpokedex.extension.observeNotNull
 import com.ozan.cleanpokedex.ui.base.BaseFragment
 import com.ozan.cleanpokedex.ui.bindingadapter.bindImageUrl
+import com.ozan.cleanpokedex.ui.bindingadapter.bindPokemonId
 import com.ozan.cleanpokedex.ui.detail.recycler.PokemonStatsRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,6 +46,7 @@ class PokemonDetailFragment : BaseFragment<FragPokemonDetailBinding>() {
     private fun subscribePokemonDetail() {
         viewModel.pokemonDetail.observeNotNull(viewLifecycleOwner) {
             binding?.ivPokemon?.bindImageUrl(it.imageUrl)
+            binding?.tvPokemonId?.bindPokemonId(it.id)
             binding?.tvName?.text= it.name
             binding?.tvType?.text= it.type
             statRecyclerAdapter.show(it.statList)

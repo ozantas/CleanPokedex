@@ -15,19 +15,33 @@
         style="@style/card_pokemon_list"
         >
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="16dp"
             >
 
+            <TextView
+                android:id="@+id/tvPokemonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tv_pokemon_id"
+                pokemonId="@{model.id}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="#5"
+                />
+
             <ImageView
+                android:id="@+id/ivPokemonIcon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 app:imageUrl="@{model.imageUrl}"
                 android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPokemonId"
                 />
 
             <TextView
@@ -35,10 +49,13 @@
                 android:layout_height="wrap_content"
                 android:text="@{model.name}"
                 android:padding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPokemonIcon"
                 tools:text="Charizard"
                 />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 </layout>

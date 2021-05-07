@@ -4,6 +4,7 @@ import com.ozan.cleanpokedex.data.datasource.database.entity.PokemonListEntity
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemondetail.PokemonDetailResponse
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemondetail.StatListItem
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemonlist.PokemonListItemModel
+import com.ozan.cleanpokedex.ui.uimodel.pokemon.PhysicalInfoUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonListUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
@@ -28,11 +29,18 @@ class PokemonMapper @Inject constructor(
 
     fun toDetailUiModel(response: PokemonDetailResponse): PokemonDetailUiModel {
         return PokemonDetailUiModel(
+            id = response.id,
             name = response.name,
             imageUrl= "$imageBaseUrl${response.id}.png",
             type= response.types.first().type.type,
-            height = response.height.toString(),
-            weight = response.weight.toString(),
+            height = PhysicalInfoUiModel(
+                response.height,
+                "m"
+            ),
+            weight = PhysicalInfoUiModel(
+                response.weight,
+                "kg"
+            ),
             statList = toStatUiModel(response.stats)
         )
     }

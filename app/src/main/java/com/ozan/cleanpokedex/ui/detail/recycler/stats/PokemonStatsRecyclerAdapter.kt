@@ -1,4 +1,4 @@
-package com.ozan.cleanpokedex.ui.detail.recycler
+package com.ozan.cleanpokedex.ui.detail.recycler.stats
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

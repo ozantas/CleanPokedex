@@ -7,5 +7,5 @@ data class PokemonDetailUiModel(
     val height: PhysicalInfoUiModel,
     val weight: PhysicalInfoUiModel,
     val statList: List<PokemonStatUiModel>,
-    val type: String,
+    val typeList: List<String>,
 )

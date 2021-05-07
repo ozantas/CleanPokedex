@@ -9,7 +9,8 @@ import com.ozan.cleanpokedex.extension.observeNotNull
 import com.ozan.cleanpokedex.ui.base.BaseFragment
 import com.ozan.cleanpokedex.ui.bindingadapter.bindImageUrl
 import com.ozan.cleanpokedex.ui.bindingadapter.bindPokemonId
-import com.ozan.cleanpokedex.ui.detail.recycler.PokemonStatsRecyclerAdapter
+import com.ozan.cleanpokedex.ui.detail.recycler.stats.PokemonStatsRecyclerAdapter
+import com.ozan.cleanpokedex.ui.detail.recycler.type.PokemonTypeRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,9 +37,14 @@ class PokemonDetailFragment : BaseFragment<FragPokemonDetailBinding>() {
         PokemonStatsRecyclerAdapter()
     }
 
+    private val typeRecyclerAdapter by lazy {
+        PokemonTypeRecyclerAdapter()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.rvStats?.adapter= statRecyclerAdapter
+        binding?.rvType?.adapter= typeRecyclerAdapter
         viewModel.showDetail(pokemonName)
         subscribePokemonDetail()
     }
@@ -48,8 +54,8 @@ class PokemonDetailFragment : BaseFragment<FragPokemonDetailBinding>() {
             binding?.ivPokemon?.bindImageUrl(it.imageUrl)
             binding?.tvPokemonId?.bindPokemonId(it.id)
             binding?.tvName?.text= it.name
-            binding?.tvType?.text= it.type
             statRecyclerAdapter.show(it.statList)
+            typeRecyclerAdapter.show(it.typeList)
         }
     }
 

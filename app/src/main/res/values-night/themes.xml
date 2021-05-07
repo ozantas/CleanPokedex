@@ -40,7 +40,7 @@
     </style>
 
     <style name="tv_pokemon_type">
-        <item name="android:textColor">@color/gray600</item>
+        <item name="android:textColor">@color/gray500</item>
         <item name="android:textSize">16sp</item>
     </style>
 

@@ -15,12 +15,12 @@ class PokemonMapper @Inject constructor(
 ) {
 
     fun toUiModelList(modelList: List<PokemonListEntity>): List<PokemonListUiModel> {
-        val uiModelList= mutableListOf<PokemonListUiModel>()
+        val uiModelList = mutableListOf<PokemonListUiModel>()
         modelList.forEach {
-            val pokemon= PokemonListUiModel(
-                    id= it.id,
-                    name = it.name,
-                    "$imageBaseUrl${it.id}.png"
+            val pokemon = PokemonListUiModel(
+                id = it.id,
+                name = it.name,
+                "$imageBaseUrl${it.id}.png"
             )
             uiModelList.add(pokemon)
         }
@@ -31,8 +31,10 @@ class PokemonMapper @Inject constructor(
         return PokemonDetailUiModel(
             id = response.id,
             name = response.name,
-            imageUrl= "$imageBaseUrl${response.id}.png",
-            type= response.types.first().type.type,
+            imageUrl = "$imageBaseUrl${response.id}.png",
+            typeList = response.types.map {
+                it.type.type
+            },
             height = PhysicalInfoUiModel(
                 response.height,
                 "m"

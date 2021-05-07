@@ -36,11 +36,13 @@ class PokemonMapper @Inject constructor(
                 it.type.type
             },
             height = PhysicalInfoUiModel(
-                response.height,
+                //api sends it in decimetres
+                response.height.div(10f),
                 "m"
             ),
             weight = PhysicalInfoUiModel(
-                response.weight,
+                //api sends it in hectograms
+                response.weight.div(10f),
                 "kg"
             ),
             statList = toStatUiModel(response.stats)

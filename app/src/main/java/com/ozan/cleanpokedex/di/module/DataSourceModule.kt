@@ -1,5 +1,6 @@
 package com.ozan.cleanpokedex.di.module
 
+import com.ozan.cleanpokedex.data.datasource.memory.PokemonDetailDataSource
 import com.ozan.cleanpokedex.data.datasource.memory.PokemonListPageDataSource
 import dagger.Module
 import dagger.Provides
@@ -14,5 +15,9 @@ object DataSourceModule {
     @Singleton
     @Provides
     fun pokemonListPageDataSource()= PokemonListPageDataSource()
+
+    @Singleton
+    @Provides
+    fun pokemonDetailDataSource()= PokemonDetailDataSource()
 
 }

@@ -4,7 +4,6 @@ import com.ozan.cleanpokedex.data.Resource
 import com.ozan.cleanpokedex.data.datasource.database.dao.PokemonDao
 import com.ozan.cleanpokedex.data.datasource.database.entity.PokemonListEntity
 import com.ozan.cleanpokedex.data.datasource.memory.PokemonDetailDataSource
-import com.ozan.cleanpokedex.data.datasource.memory.PokemonListPageDataSource
 import com.ozan.cleanpokedex.data.datasource.network.PokedexApi
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemondetail.PokemonDetailResponse
 import com.ozan.cleanpokedex.domain.mapper.PokemonMapper
@@ -15,22 +14,20 @@ import javax.inject.Inject
 
 class PokemonRepositoryImpl @Inject constructor(
     private val pokedexApi: PokedexApi,
-    private val listPageDataSource: PokemonListPageDataSource,
     private val pokemonDetailDataSource: PokemonDetailDataSource,
     private val pokemonDao: PokemonDao,
     private val pokemonMapper: PokemonMapper
 ) : PokemonRepository, Repository() {
 
-    override suspend fun getPokemonList(): Resource<List<PokemonListEntity>> {
-        val offset = listPageDataSource.getOffset()
-        val pageSize = listPageDataSource.pageSize
+    override suspend fun getPokemonList(
+        pageSize: Int,
+        offset: Int
+    ): Resource<List<PokemonListEntity>> {
         val listFromDb = pokemonDao.getPokemonList(pageSize, offset)
         return if (listFromDb.isEmpty()) {
             sendPokemonListRequest(pageSize, offset)
         } else {
             Resource.Success(listFromDb)
-        }.also {
-            listPageDataSource.increasePage()
         }
     }
 

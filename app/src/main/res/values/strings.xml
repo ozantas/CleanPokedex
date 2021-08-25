@@ -5,7 +5,6 @@
     <string name="system">System</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_pokemon_list_cannot_load">Pokemon list cannot be loaded</string>
 
 </resources>

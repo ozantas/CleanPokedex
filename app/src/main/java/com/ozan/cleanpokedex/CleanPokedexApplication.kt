@@ -6,8 +6,4 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class CleanPokedexApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-    }
-
 }

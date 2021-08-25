@@ -68,6 +68,6 @@ object NetworkModule {
   @ImageBaseUrl
   @Singleton
   @Provides
-  fun imageBaseUrl()= "https://pokeres.bastionbot.org/images/pokemon/"
+  fun imageBaseUrl()= "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 
 }

@@ -7,6 +7,6 @@ import com.ozan.cleanpokedex.data.datasource.network.model.pokemonlist.PokemonLi
 
 interface PokemonRepository {
 
-    suspend fun getPokemonList(): Resource<List<PokemonListEntity>>
+    suspend fun getPokemonList(pageSize: Int, offset: Int): Resource<List<PokemonListEntity>>
     suspend fun getPokemonDetail(name: String): Resource<PokemonDetailResponse>
 }

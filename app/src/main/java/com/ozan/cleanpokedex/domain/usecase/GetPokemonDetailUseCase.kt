@@ -5,7 +5,6 @@ import com.ozan.cleanpokedex.data.repository.PokemonRepository
 import com.ozan.cleanpokedex.domain.mapper.PokemonMapper
 import com.ozan.cleanpokedex.extension.map
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
-import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
 import javax.inject.Inject
 
 class GetPokemonDetailUseCase @Inject constructor(
@@ -14,7 +13,7 @@ class GetPokemonDetailUseCase @Inject constructor(
 ) {
 
     suspend fun getDetail(pokemonName: String): Resource<PokemonDetailUiModel> {
-        return pokemonRepository.getPokemonDetail(pokemonName)
+        return pokemonRepository.getPokemonDetail(pokemonName.lowercase())
             .map(
                 onSuccess = {
                     val uiModel= pokemonMapper.toDetailUiModel(it)

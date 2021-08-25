@@ -6,9 +6,7 @@ import com.ozan.cleanpokedex.R
 import com.ozan.cleanpokedex.databinding.ItemPokemonTypeBinding
 import com.ozan.cleanpokedex.extension.inflateBinding
 
-class PokemonTypeRecyclerAdapter constructor(
-
-) : RecyclerView.Adapter<PokemonTypeViewHolder>() {
+class PokemonTypeRecyclerAdapter : RecyclerView.Adapter<PokemonTypeViewHolder>() {
 
     private var typeList = listOf<String>()
 

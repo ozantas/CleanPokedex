@@ -25,4 +25,12 @@ class PokemonMapperTest: BaseTest(){
         Truth.assertThat(uiModelList.last().id).isEqualTo(modelList.last().id)
     }
 
+    @Test
+    fun `given detail response when map to ui model then return PokemonDetailUiModel`() {
+        val result= mapper.toDetailUiModel(PokemonTestFake.detailResponse)
+
+        Truth.assertThat(result.statList.first().progress).isEqualTo(0.5f)
+
+    }
+
 }

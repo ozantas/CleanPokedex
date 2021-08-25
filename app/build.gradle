@@ -32,21 +32,34 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        compose true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.activity:activity-ktx:1.2.3'
-    implementation 'androidx.fragment:fragment-ktx:1.3.3'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.activity:activity-ktx:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
@@ -61,23 +74,46 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
-    // glide
-    implementation "com.github.bumptech.glide:glide:4.12.0"
-    kapt "com.github.bumptech.glide:compiler:4.12.0"
-
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1'
+    implementation "io.coil-kt:coil-compose:1.3.2"
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    // Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation 'androidx.navigation:navigation-compose:2.4.0-alpha06'
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
+
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'androidx.test.ext:truth:1.3.0'
+    testImplementation 'androidx.test.ext:truth:1.4.0'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'org.robolectric:robolectric:4.5.1'
-    testImplementation 'io.mockk:mockk:1.11.0'
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
-    testImplementation 'androidx.test:core:1.3.0'
-    testImplementation 'androidx.test:core-ktx:1.3.0'
-    testImplementation 'androidx.test.ext:junit-ktx:1.1.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'org.robolectric:robolectric:4.6.1'
+    testImplementation 'io.mockk:mockk:1.12.0'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1"
+    testImplementation 'androidx.test:core:1.4.0'
+    testImplementation 'androidx.test:core-ktx:1.4.0'
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+
+    androidTestImplementation "androidx.navigation:navigation-testing:2.4.0-alpha06"
+    // Test rules and transitive dependencies:
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
+// Needed for createComposeRule, but not createAndroidComposeRule:
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

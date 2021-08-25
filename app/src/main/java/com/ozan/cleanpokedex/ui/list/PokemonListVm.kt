@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ozan.cleanpokedex.domain.usecase.GetPokemonListUseCase
+import com.ozan.cleanpokedex.extension.mergeWith
 import com.ozan.cleanpokedex.extension.onErrorResource
 import com.ozan.cleanpokedex.extension.onSuccessResource
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonListUiModel
@@ -18,28 +19,32 @@ class PokemonListVm @Inject constructor(
     private val getPokemonListUseCase: GetPokemonListUseCase
 ) : ViewModel() {
 
-    private val _pokemonList = MutableLiveData<List<PokemonListUiModel>>()
-    val pokemonList: LiveData<List<PokemonListUiModel>> = _pokemonList
+    private val _state = MutableLiveData<PokemonListState>(PokemonListState.Loading)
+    val state: LiveData<PokemonListState> = _state
 
-    fun showList() =
+    private var pokemonList = listOf<PokemonListUiModel>()
+
+    init {
+        showList()
+    }
+
+    private fun showList() =
         viewModelScope.launch(Dispatchers.IO) {
             getPokemonListUseCase.getPokemonList()
                 .onSuccessResource {
-                    val list = _pokemonList.value?.toMutableList()
-                        ?: mutableListOf()
-                    list.addAll(it)
-                    _pokemonList.postValue(list)
+                    pokemonList= pokemonList.mergeWith(it)
+                    _state.postValue(PokemonListState.ListUpdated(pokemonList))
                 }
                 .onErrorResource {
-
+                    val error = PokemonListError.CannotLoad()
+                    _state.postValue(PokemonListState.Error(error))
                 }
         }
 
-    fun showNextPage(itemPosition: Int, totalItemCount: Int) =
-        viewModelScope.launch(Dispatchers.IO) {
-            if (itemPosition >= totalItemCount * 0.7) {
-                showList()
-            }
+    fun showNextPage(itemPosition: Int) {
+        if (itemPosition >= pokemonList.size * 0.5) {
+            showList()
         }
+    }
 
 }

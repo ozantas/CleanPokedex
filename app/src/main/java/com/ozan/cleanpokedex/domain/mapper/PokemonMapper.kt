@@ -4,6 +4,7 @@ import com.ozan.cleanpokedex.data.datasource.database.entity.PokemonListEntity
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemondetail.PokemonDetailResponse
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemondetail.StatListItem
 import com.ozan.cleanpokedex.data.datasource.network.model.pokemonlist.PokemonListItemModel
+import com.ozan.cleanpokedex.extension.capitalizeFirstChar
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PhysicalInfoUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonListUiModel
@@ -19,8 +20,8 @@ class PokemonMapper @Inject constructor(
         modelList.forEach {
             val pokemon = PokemonListUiModel(
                 id = it.id,
-                name = it.name,
-                "$imageBaseUrl${it.id}.png"
+                name = it.name.capitalizeFirstChar(),
+                imageUrl = imageBaseUrl.toPokemonImageUrl(it.id)
             )
             uiModelList.add(pokemon)
         }
@@ -30,8 +31,8 @@ class PokemonMapper @Inject constructor(
     fun toDetailUiModel(response: PokemonDetailResponse): PokemonDetailUiModel {
         return PokemonDetailUiModel(
             id = response.id,
-            name = response.name,
-            imageUrl = "$imageBaseUrl${response.id}.png",
+            name = response.name.capitalizeFirstChar(),
+            imageUrl = imageBaseUrl.toPokemonImageUrl(response.id),
             typeList = response.types.map {
                 it.type.type
             },
@@ -53,7 +54,8 @@ class PokemonMapper @Inject constructor(
         return statModelList.map {
             PokemonStatUiModel(
                 name = it.stat.name.statName,
-                stat = it.baseStat
+                stat = it.baseStat,
+                progress = it.baseStat.div(300f)
             )
         }
     }
@@ -70,5 +72,8 @@ class PokemonMapper @Inject constructor(
     private fun PokemonListItemModel.getId(): Int {
         return url.split("/".toRegex()).dropLast(1).last().toInt()
     }
+
+    private fun String.toPokemonImageUrl(pokemonId: Int) =
+        "$this${String.format("%03d", pokemonId)}.png"
 
 }

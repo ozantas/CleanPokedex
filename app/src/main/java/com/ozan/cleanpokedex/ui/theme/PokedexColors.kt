@@ -1,8 +1,5 @@
 package com.ozan.cleanpokedex.ui.theme
 
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val gray100 = Color(0xffFAFAFA)
@@ -33,16 +30,25 @@ val blue700 = Color(0xff1976D2)
 val blue800 = Color(0xff1565C0)
 val blue900 = Color(0xff0D47A1)
 
+val blueGray400 = Color(0xff78909C)
+val pink400 = Color(0xffEC407A)
+
 val yellow400 = Color(0xffFFEE58)
 val yellow500 = Color(0xffFFEB3B)
 val yellow700 = Color(0xffFFD600)
 
 val amber700 = Color(0xffFFAB00)
 
+val purple400 = Color(0xffAB47BC)
+val purple500 = Color(0xff9C27B0)
+val purple600 = Color(0xff8E24AA)
+
+val brown500 = Color(0xff795548)
+
 val teal = Color(0xff009688)
 
-@Composable
-fun errorButtonColors()= ButtonDefaults.buttonColors(
-    backgroundColor = MaterialTheme.colors.error,
-    contentColor = Color.White
-)
+val orange500 = Color(0xffFF9800)
+
+val green500 = Color(0xff4CAF50)
+val green600 = Color(0xff43A047)
+

@@ -32,7 +32,7 @@ class PokemonListVm @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             getPokemonListUseCase.getPokemonList()
                 .onSuccessResource {
-                    pokemonList= pokemonList.mergeWith(it)
+                    pokemonList = pokemonList.mergeWith(it)
                     _state.postValue(PokemonListState.ListUpdated(pokemonList))
                 }
                 .onErrorResource {

@@ -38,15 +38,6 @@ private val DarkThemeColors = darkColors(
 val Colors.onBackgroundVariant: Color
     get() = if (isLight) gray700 else gray500
 
-val Colors.surfaceVariant: Color
-    get() = if (isLight) gray100 else gray800
-
-val Colors.starColor: Color
-    get() = if (isLight) yellow700 else yellow400
-
-val Colors.disabledColor: Color
-    get() = if (isLight) gray400 else gray700
-
 @Composable
 fun PokedexTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

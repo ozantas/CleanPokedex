@@ -4,6 +4,7 @@ import com.ozan.cleanpokedex.ui.uimodel.pokemon.PhysicalInfoUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonListUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
+import com.ozan.cleanpokedex.ui.util.PokemonType
 
 object PokemonPreview {
     val pokemon1 = PokemonListUiModel(
@@ -40,7 +41,7 @@ object PokemonPreview {
             PokemonStatUiModel("SP DEF",100, 0.33f),
             PokemonStatUiModel("SPEED",150,0.5f)
         ),
-        typeList = listOf("fire","flying")
+        typeList = listOf(PokemonType.Fire,PokemonType.Flying)
     )
     val pokemonList= listOf(pokemon1, pokemon2, pokemon3, pokemon4)
 }

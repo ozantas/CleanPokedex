@@ -3,7 +3,6 @@ package com.ozan.cleanpokedex.ui.list
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import com.ozan.cleanpokedex.ui.theme.PokedexTheme

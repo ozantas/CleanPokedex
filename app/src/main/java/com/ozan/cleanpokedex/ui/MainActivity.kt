@@ -17,12 +17,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         ui {
             val navController = rememberNavController()
             Scaffold(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
             ) { innerPadding ->
-                Column(modifier = Modifier.padding(innerPadding)) {
+                Column(
+                    modifier = Modifier.padding(innerPadding)
+                ) {
                     MainNavigation(navController)
                 }
             }

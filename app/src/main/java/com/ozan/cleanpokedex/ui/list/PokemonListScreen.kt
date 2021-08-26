@@ -50,7 +50,6 @@ fun PokemonListScreen(
                 CenteredError(stringResource(state.e.messageResId))
             is PokemonListState.ListUpdated ->
                 PokemonListContent(
-                    modifier = Modifier.fillMaxWidth(),
                     pokemonList = state.list,
                     onItemClicked = {
                         navController.navigate(
@@ -66,9 +65,26 @@ fun PokemonListScreen(
 
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PokemonListContent(
+    pokemonList: List<PokemonListUiModel>,
+    onItemClicked: (PokemonListUiModel) -> Unit,
+    onScroll: (Int) -> Unit,
+) {
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 32.dp)
+    ) {
+        PokemonList(pokemonList = pokemonList, onItemClicked = onItemClicked, onScroll = onScroll)
+    }
+
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun PokemonList(
     modifier: Modifier = Modifier,
     pokemonList: List<PokemonListUiModel>,
     gridSize: Int = 2,
@@ -94,18 +110,17 @@ fun PokemonListContent(
         snapshotFlow { listState.firstVisibleItemIndex }
             .debounce(300)
             .map {
-                (it +1) * gridSize
+                (it + 1) * gridSize
             }
             .collect {
                 onScroll(it)
             }
     }
-
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PokemonItem(pokemon: PokemonListUiModel, onItemClicked: () -> Unit) {
+private fun PokemonItem(pokemon: PokemonListUiModel, onItemClicked: () -> Unit) {
     Card(
         modifier = Modifier
             .wrapContentWidth()
@@ -149,7 +164,6 @@ fun PokemonListPreview() {
         darkTheme = true
     ) {
         PokemonListContent(
-            modifier = Modifier.fillMaxWidth(),
             pokemonList = PokemonPreview.pokemonList,
             onItemClicked = {},
             onScroll = {}

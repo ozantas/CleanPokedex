@@ -1,10 +1,10 @@
 package com.ozan.cleanpokedex.ui.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -13,10 +13,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ozan.cleanpokedex.ui.preview.PokemonPreview
 import com.ozan.cleanpokedex.ui.theme.PokedexTheme
 import com.ozan.cleanpokedex.ui.theme.onBackgroundVariant
@@ -25,6 +25,7 @@ import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
 import com.ozan.cleanpokedex.ui.util.CircularLoading
 import com.ozan.cleanpokedex.ui.util.PokemonImage
+import com.ozan.cleanpokedex.ui.util.PokemonType
 
 @Composable
 fun PokemonDetailScreen(
@@ -39,13 +40,21 @@ fun PokemonDetailScreen(
                 PokemonDetailContent(it.detail)
         }
     }
-
 }
 
 @Composable
 fun PokemonDetailContent(detail: PokemonDetailUiModel) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        detail.typeList.first().color,
+                        MaterialTheme.colors.background,
+                        MaterialTheme.colors.background,
+                    )
+                )
+            ),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -63,7 +72,7 @@ fun PokemonDetailContent(detail: PokemonDetailUiModel) {
 }
 
 @Composable
-private fun PokemonInfo(id: Int, name: String, typeList: List<String>) {
+private fun PokemonInfo(id: Int, name: String, typeList: List<PokemonType>) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -81,13 +90,13 @@ private fun PokemonInfo(id: Int, name: String, typeList: List<String>) {
 }
 
 @Composable
-fun TypeList(typeList: List<String>) {
+fun TypeList(typeList: List<PokemonType>) {
     LazyRow(
         content = {
             items(typeList) { type ->
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = type,
+                    text = type.name,
                     style = MaterialTheme.typography.body1,
                     color = MaterialTheme.colors.onBackgroundVariant
                 )

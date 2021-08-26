@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.accompanist.insets.systemBarsPadding
 import com.ozan.cleanpokedex.ui.navigation.NavigationScreen
 import com.ozan.cleanpokedex.ui.preview.PokemonPreview
 import com.ozan.cleanpokedex.ui.theme.PokedexShapes
@@ -75,7 +76,7 @@ fun PokemonListContent(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp)
+            .systemBarsPadding()
     ) {
         PokemonList(pokemonList = pokemonList, onItemClicked = onItemClicked, onScroll = onScroll)
     }

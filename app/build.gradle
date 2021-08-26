@@ -93,7 +93,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     // Integration with observables
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation 'androidx.navigation:navigation-compose:2.4.0-alpha06'
+    implementation "androidx.navigation:navigation-compose:$navigation"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
 
     testImplementation 'junit:junit:4.13.2'
@@ -106,7 +106,7 @@ dependencies {
     testImplementation 'androidx.test:core-ktx:1.4.0'
     testImplementation 'androidx.test.ext:junit-ktx:1.1.3'
 
-    androidTestImplementation "androidx.navigation:navigation-testing:2.4.0-alpha06"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation"
     // Test rules and transitive dependencies:
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
 // Needed for createComposeRule, but not createAndroidComposeRule:
@@ -114,6 +114,7 @@ dependencies {
 
     implementation "com.google.accompanist:accompanist-insets:$accompanist"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist"
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

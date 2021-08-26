@@ -1,22 +1,24 @@
 package com.ozan.cleanpokedex.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.compose.navArgument
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.ozan.cleanpokedex.ui.detail.PokemonDetailScreen
 import com.ozan.cleanpokedex.ui.detail.PokemonDetailVm
 import com.ozan.cleanpokedex.ui.list.PokemonListScreen
 import com.ozan.cleanpokedex.ui.list.PokemonListVm
 
+@ExperimentalAnimationApi
 @Composable
 fun MainNavigation(
     navController: NavHostController
 ) {
-    NavHost(
+    AnimatedNavHost(
         navController,
         startDestination = NavigationScreen.List.route
     ) {

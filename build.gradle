@@ -26,10 +26,11 @@ allprojects {
 ext {
     room_version = "2.3.0"
     accompanist= '0.17.0'
+    navigation = "2.4.0-alpha07"
 
-    compileSdkVersion = 30
+    compileSdkVersion = 31
     minSdkVersion = 21
-    targetSdkVersion = 30
+    targetSdkVersion = 31
     versionCode = 1
     versionName = '1.0.0'
 }

@@ -1,5 +1,6 @@
 package com.ozan.cleanpokedex.ui.detail
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,9 +12,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,6 +30,8 @@ import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
 import com.ozan.cleanpokedex.ui.util.CircularLoading
 import com.ozan.cleanpokedex.ui.util.PokemonImage
 import com.ozan.cleanpokedex.ui.util.PokemonType
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun PokemonDetailScreen(
@@ -46,30 +50,48 @@ fun PokemonDetailScreen(
 
 @Composable
 fun PokemonDetailContent(detail: PokemonDetailUiModel) {
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        detail.typeList.first().color,
-                        MaterialTheme.colors.background,
-                        MaterialTheme.colors.background,
-                    )
+    BoxWithConstraints {
+        val animationScope = rememberCoroutineScope()
+        val gradientAnimation = remember { Animatable(initialValue = 0f) }
+
+        animationScope.launch {
+            delay(100)
+            gradientAnimation.animateTo(
+                targetValue = constraints.maxHeight.div(2f),
+                animationSpec = tween(
+                    durationMillis = 300,
+                    easing = LinearOutSlowInEasing
                 )
-            ),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        PokemonImage(
-            Modifier.size(132.dp),
-            detail.imageUrl,
-            detail.name
-        )
-        PokemonInfo(detail.id, detail.name, detail.typeList)
-        PhysicalInfoRow(listOf(detail.height, detail.weight))
-        Spacer(modifier = Modifier.padding(8.dp))
-        StatTable(detail.statList)
-        Spacer(modifier = Modifier.padding(8.dp))
+            )
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            detail.typeList.first().color,
+                            MaterialTheme.colors.background,
+                        ),
+                        endY = gradientAnimation.value
+                    )
+                ),
+            verticalArrangement = Arrangement.SpaceAround,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            PokemonImage(
+                Modifier.size(132.dp),
+                detail.imageUrl,
+                detail.name
+            )
+            PokemonInfo(detail.id, detail.name, detail.typeList)
+            PhysicalInfoRow(listOf(detail.height, detail.weight))
+            Spacer(modifier = Modifier.padding(8.dp))
+            StatTable(detail.statList)
+            Spacer(modifier = Modifier.padding(8.dp))
+        }
+
     }
 }
 
@@ -163,11 +185,25 @@ fun Stat(modifier: Modifier, stat: PokemonStatUiModel) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        val animationScope = rememberCoroutineScope()
+        val statAnimation = remember { Animatable(initialValue = 0f) }
+
+        animationScope.launch {
+            statAnimation.animateTo(
+                targetValue = stat.progress,
+                animationSpec = tween(
+                    durationMillis = 500,
+                    easing = LinearOutSlowInEasing
+                )
+            )
+        }
+
         Text(text = stat.name)
         LinearProgressIndicator(
-            modifier = Modifier.height(8.dp)
+            modifier = Modifier
+                .height(8.dp)
                 .clip(MaterialTheme.shapes.large),
-            progress = stat.progress,
+            progress = statAnimation.value,
             color = MaterialTheme.colors.secondary
         )
     }

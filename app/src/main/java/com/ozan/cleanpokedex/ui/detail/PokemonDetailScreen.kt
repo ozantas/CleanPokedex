@@ -13,6 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -163,8 +165,10 @@ fun Stat(modifier: Modifier, stat: PokemonStatUiModel) {
     ) {
         Text(text = stat.name)
         LinearProgressIndicator(
+            modifier = Modifier.height(8.dp)
+                .clip(MaterialTheme.shapes.large),
             progress = stat.progress,
-            color = MaterialTheme.colors.secondary,
+            color = MaterialTheme.colors.secondary
         )
     }
 }

@@ -12,7 +12,7 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt, Compose and 
 <img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/list.webp" width="20%"/> <img src="https://raw.githubusercontent.com/ozantas/CleanPokedex/master/screenshots/detail.webp" width="20%"/>
 
 ## Tech Stack & Features
-- %100 Kotlin
+- % 100 Kotlin
 - Jetpack Compose
 - Coroutines
 - Hilt

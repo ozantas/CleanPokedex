@@ -51,10 +51,10 @@ private fun exitTransition(offset: Int= 300): AnimatedContentScope<String>.(init
         slideOutHorizontally(
             targetOffsetX = { offset },
             animationSpec = tween(
-                durationMillis = 400,
+                durationMillis = 300,
                 easing = FastOutSlowInEasing
             )
-        ) + fadeOut(animationSpec = tween(400))
+        ) + fadeOut(animationSpec = tween(300))
     }
 
 @ExperimentalAnimationApi
@@ -63,8 +63,8 @@ private fun enterTransition(offset: Int= 300): AnimatedContentScope<String>.(ini
         slideInHorizontally(
             initialOffsetX = { offset },
             animationSpec = tween(
-                durationMillis = 400,
+                durationMillis = 300,
                 easing = FastOutSlowInEasing
             )
-        ) + fadeIn(animationSpec = tween(400))
+        ) + fadeIn(animationSpec = tween(300))
     }

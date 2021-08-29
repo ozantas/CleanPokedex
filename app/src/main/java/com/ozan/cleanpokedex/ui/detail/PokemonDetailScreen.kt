@@ -55,11 +55,11 @@ fun PokemonDetailContent(detail: PokemonDetailUiModel) {
         val gradientAnimation = remember { Animatable(initialValue = 0f) }
 
         animationScope.launch {
-            delay(100)
+            delay(50)
             gradientAnimation.animateTo(
                 targetValue = constraints.maxHeight.div(2f),
                 animationSpec = tween(
-                    durationMillis = 300,
+                    durationMillis = 200,
                     easing = LinearOutSlowInEasing
                 )
             )

@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +28,7 @@ import com.ozan.cleanpokedex.ui.theme.onBackgroundVariant
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PhysicalInfoUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
+import com.ozan.cleanpokedex.ui.util.CenteredError
 import com.ozan.cleanpokedex.ui.util.CircularLoading
 import com.ozan.cleanpokedex.ui.util.PokemonImage
 import com.ozan.cleanpokedex.ui.util.PokemonType
@@ -42,6 +44,8 @@ fun PokemonDetailScreen(
         when (it) {
             is PokemonDetailState.Loading ->
                 CircularLoading()
+            is PokemonDetailState.Error ->
+                CenteredError(stringResource(it.e.messageResId))
             is PokemonDetailState.Success ->
                 PokemonDetailContent(it.detail)
         }

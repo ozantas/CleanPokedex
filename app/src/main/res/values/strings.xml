@@ -6,5 +6,6 @@
     <string name="dark">Dark</string>
     <string name="light">Light</string>
     <string name="error_pokemon_list_cannot_load">Pokemon list cannot be loaded</string>
+    <string name="error_pokemon_detail_cannot_load">Pokemon detail cannot be loaded</string>
 
 </resources>

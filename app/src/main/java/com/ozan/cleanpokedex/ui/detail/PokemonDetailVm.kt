@@ -2,6 +2,7 @@ package com.ozan.cleanpokedex.ui.detail
 
 import androidx.lifecycle.*
 import com.ozan.cleanpokedex.domain.usecase.GetPokemonDetailUseCase
+import com.ozan.cleanpokedex.extension.onErrorResource
 import com.ozan.cleanpokedex.extension.onSuccessResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,10 @@ class PokemonDetailVm @Inject constructor(
             getPokemonDetailUseCase.getDetail(pokemonName)
                 .onSuccessResource {
                     val state= PokemonDetailState.Success(it)
+                    _state.postValue(state)
+                }
+                .onErrorResource {
+                    val state= PokemonDetailState.Error(PokemonDetailError.CannotLoad())
                     _state.postValue(state)
                 }
         }

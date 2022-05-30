@@ -14,10 +14,10 @@ import com.ozan.cleanpokedex.extension.ui
 import com.ozan.cleanpokedex.ui.navigation.MainNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
+@OptIn(ExperimentalAnimationApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window,false)
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 BoxWithConstraints(
                     modifier = Modifier.padding(innerPadding)
                 ) {
-                    MainNavigation(navController, constraints.maxWidth)
+                    MainNavigation(navController)
                 }
             }
         }

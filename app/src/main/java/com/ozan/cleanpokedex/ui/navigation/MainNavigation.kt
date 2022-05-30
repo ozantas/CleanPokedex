@@ -2,6 +2,7 @@ package com.ozan.cleanpokedex.ui.navigation
 
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -36,7 +37,7 @@ fun MainNavigation(
                 slideIntoContainer(AnimatedContentScope.SlideDirection.Left)
             },
             popExitTransition = {
-                slideOutOfContainer(AnimatedContentScope.SlideDirection.Down)
+                slideOutOfContainer(AnimatedContentScope.SlideDirection.Down, tween(500))
             }
         ) {
             val viewModel = hiltViewModel<PokemonDetailVm>()

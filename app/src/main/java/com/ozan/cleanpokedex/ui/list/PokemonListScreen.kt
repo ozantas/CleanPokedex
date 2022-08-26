@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.google.accompanist.insets.systemBarsPadding
 import com.ozan.cleanpokedex.ui.navigation.NavigationScreen
 import com.ozan.cleanpokedex.ui.preview.PokemonPreview
 import com.ozan.cleanpokedex.ui.theme.PokedexShapes

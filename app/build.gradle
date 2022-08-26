@@ -66,7 +66,6 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
-    implementation "com.google.accompanist:accompanist-insets:$accompanist"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist"
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist"
 

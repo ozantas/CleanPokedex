@@ -1,11 +1,10 @@
 package com.ozan.cleanpokedex.ui.list
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -32,7 +31,6 @@ import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonListUiModel
 import com.ozan.cleanpokedex.ui.util.CenteredError
 import com.ozan.cleanpokedex.ui.util.CircularLoading
 import com.ozan.cleanpokedex.ui.util.PokemonImage
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.map
 
@@ -83,7 +81,6 @@ fun PokemonListContent(
 
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun PokemonList(
     modifier: Modifier = Modifier,
@@ -92,11 +89,11 @@ private fun PokemonList(
     onItemClicked: (PokemonListUiModel) -> Unit,
     onScroll: (Int) -> Unit
 ) {
-    val listState = rememberLazyListState()
+    val listState = rememberLazyGridState()
 
     LazyVerticalGrid(
         modifier = modifier,
-        cells = GridCells.Fixed(gridSize),
+        columns = GridCells.Fixed(gridSize),
         content = {
             items(pokemonList) { pokemon ->
                 PokemonItem(pokemon) {

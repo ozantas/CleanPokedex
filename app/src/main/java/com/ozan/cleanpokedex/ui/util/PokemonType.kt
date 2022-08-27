@@ -4,23 +4,22 @@ import androidx.compose.ui.graphics.Color
 import com.ozan.cleanpokedex.ui.theme.*
 
 enum class PokemonType(val color: Color) {
-
-    Normal(gray500),
-    Fire(red500),
-    Water(blue500),
-    Electric(yellow500),
-    Grass(green500),
-    Ice(blue300),
-    Fighting(red400),
-    Poison(purple400),
-    Ground(amber700),
-    Flying(gray600),
-    Psychic(purple500),
-    Bug(teal),
-    Rock(brown500),
-    Ghost(purple600),
-    Dragon(orange500),
-    Dark(gray600),
-    Steel(blueGray400),
-    Fairy(pink400)
+    Normal(Grey50),
+    Fire(Red50),
+    Water(Blue40),
+    Electric(Yellow80),
+    Grass(Green50),
+    Ice(Blue70),
+    Fighting(Red80),
+    Poison(Purple40),
+    Ground(Amber70),
+    Flying(Grey50),
+    Psychic(Purple50),
+    Bug(Teal),
+    Rock(Yellow30),
+    Ghost(Purple60),
+    Dragon(Orange50),
+    Dark(BlueGrey30),
+    Steel(BlueGrey60),
+    Fairy(Pink40)
 }

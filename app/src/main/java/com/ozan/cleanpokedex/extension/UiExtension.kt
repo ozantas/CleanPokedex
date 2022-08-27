@@ -2,7 +2,7 @@ package com.ozan.cleanpokedex.extension
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -24,7 +24,7 @@ inline fun ComponentActivity.ui(
 @Composable
 fun TransparentSystemBars() {
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = MaterialTheme.colors.isLight
+    val useDarkIcons = isSystemInDarkTheme().not()
 
     SideEffect {
         systemUiController.setSystemBarsColor(

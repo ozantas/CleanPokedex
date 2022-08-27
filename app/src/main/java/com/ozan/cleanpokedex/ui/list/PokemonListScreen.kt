@@ -5,10 +5,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -115,7 +115,7 @@ private fun PokemonList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PokemonItem(pokemon: PokemonListUiModel, onItemClicked: () -> Unit) {
     Card(
@@ -135,7 +135,7 @@ private fun PokemonItem(pokemon: PokemonListUiModel, onItemClicked: () -> Unit) 
                     .fillMaxWidth()
                     .padding(8.dp),
                 textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.h5
+                style = MaterialTheme.typography.titleMedium
             )
             PokemonImage(
                 Modifier.size(72.dp),
@@ -148,7 +148,7 @@ private fun PokemonItem(pokemon: PokemonListUiModel, onItemClicked: () -> Unit) 
                     .fillMaxWidth()
                     .padding(8.dp),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }

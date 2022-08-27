@@ -1,14 +1,16 @@
 package com.ozan.cleanpokedex.ui.detail
 
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ozan.cleanpokedex.ui.preview.PokemonPreview
 import com.ozan.cleanpokedex.ui.theme.PokedexTheme
-import com.ozan.cleanpokedex.ui.theme.onBackgroundVariant
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PhysicalInfoUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonDetailUiModel
 import com.ozan.cleanpokedex.ui.uimodel.pokemon.PokemonStatUiModel
@@ -76,7 +77,7 @@ fun PokemonDetailContent(detail: PokemonDetailUiModel) {
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             detail.typeList.first().color,
-                            MaterialTheme.colors.background,
+                            MaterialTheme.colorScheme.background,
                         ),
                         endY = gradientAnimation.value
                     )
@@ -107,11 +108,11 @@ private fun PokemonInfo(id: Int, name: String, typeList: List<PokemonType>) {
     ) {
         Text(
             text = "#${id}",
-            style = MaterialTheme.typography.h4
+            style = MaterialTheme.typography.headlineMedium
         )
         Text(
             text = name,
-            style = MaterialTheme.typography.h1
+            style = MaterialTheme.typography.headlineMedium
         )
         TypeList(typeList)
     }
@@ -125,8 +126,8 @@ fun TypeList(typeList: List<PokemonType>) {
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = type.name,
-                    style = MaterialTheme.typography.body1,
-                    color = MaterialTheme.colors.onBackgroundVariant
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
@@ -155,12 +156,12 @@ private fun PhysicalInfoItem(modifier: Modifier, info: PhysicalInfoUiModel) {
     ) {
         Text(
             text = info.value.toString(),
-            style = MaterialTheme.typography.h4
+            style = MaterialTheme.typography.headlineMedium
         )
         Spacer(modifier = Modifier.padding(4.dp))
         Text(
             text = info.unit,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.titleLarge
         )
     }
 }
@@ -208,7 +209,7 @@ fun Stat(modifier: Modifier, stat: PokemonStatUiModel) {
                 .height(8.dp)
                 .clip(MaterialTheme.shapes.large),
             progress = statAnimation.value,
-            color = MaterialTheme.colors.secondary
+            color = MaterialTheme.colorScheme.secondary
         )
     }
 }

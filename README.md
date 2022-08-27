@@ -14,6 +14,7 @@ Clean Pokedex is an example of Clean Architecture on Android, Hilt, Compose and 
 ## Tech Stack & Features
 - % 100 Kotlin
 - Jetpack Compose
+- Material 3
 - Coroutines
 - Hilt
 - Navigation

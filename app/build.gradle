@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation 'io.coil-kt:coil-compose:2.2.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 

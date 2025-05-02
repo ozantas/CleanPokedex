@@ -9,7 +9,7 @@ import com.ozan.cleanpokedex.ui.theme.PokedexTheme
 import org.junit.Rule
 import org.junit.Test
 
-class PokemonListTest {
+class PokemonPokemonListTest {
 
     val navController = TestNavHostController(
         ApplicationProvider.getApplicationContext()

@@ -11,7 +11,7 @@ import io.mockk.impl.annotations.MockK
 import org.junit.Before
 import org.junit.Test
 
-class GetPokemonDetailUseCaseTest : BaseTest() {
+class GetPokemonPokemonDetailUseCaseTest : BaseTest() {
 
     lateinit var useCase: GetPokemonDetailUseCase
     @MockK

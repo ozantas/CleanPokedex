@@ -13,14 +13,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class PokemonListVm @Inject constructor(
     private val getPokemonListUseCase: GetPokemonListUseCase
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<PokemonListState>(PokemonListState.Loading)
-    val state: LiveData<PokemonListState> = _state
+    private val _state = MutableStateFlow<PokemonListState>(PokemonListState.Loading)
+    val state: StateFlow<PokemonListState> = _state
 
     private var pokemonList = listOf<PokemonListUiModel>()
 
@@ -31,13 +34,17 @@ class PokemonListVm @Inject constructor(
     private fun showList() =
         viewModelScope.launch(Dispatchers.IO) {
             getPokemonListUseCase.getPokemonList()
-                .onSuccessResource {
-                    pokemonList = pokemonList.mergeWith(it)
-                    _state.postValue(PokemonListState.ListUpdated(pokemonList))
+                .onSuccessResource { pokemonUiModelList ->
+                    _state.update {
+                        pokemonList = pokemonList.mergeWith(pokemonUiModelList)
+                        PokemonListState.ListUpdated(pokemonList)
+                    }
                 }
                 .onErrorResource {
-                    val error = PokemonListError.CannotLoad()
-                    _state.postValue(PokemonListState.Error(error))
+                    _state.update {
+                        val error = PokemonListError.CannotLoad()
+                        PokemonListState.Error(error)
+                    }
                 }
         }
 

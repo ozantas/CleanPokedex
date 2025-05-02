@@ -1,26 +1,26 @@
 package com.ozan.cleanpokedex.ui.util
 
-import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
+import androidx.compose.ui.res.painterResource
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.ozan.cleanpokedex.R
 
 @Composable
 fun PokemonImage(modifier: Modifier, url: String, desc: String = "") {
-    Image(
+    AsyncImage(
         modifier = modifier,
-        painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(LocalContext.current)
-                .data(url)
-                .crossfade(true)
-                .placeholder(R.drawable.ic_pokeball)
-                .error(R.drawable.ic_pokeball)
-                .build()
-        ),
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(url)
+            .crossfade(true)
+            .build(),
         contentDescription = desc,
+        contentScale = ContentScale.Fit,
+        placeholder = painterResource(R.drawable.ic_pokeball),
+        error = painterResource(R.drawable.ic_pokeball),
     )
-
 }

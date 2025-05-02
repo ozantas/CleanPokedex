@@ -5,9 +5,12 @@ import com.ozan.cleanpokedex.domain.usecase.GetPokemonDetailUseCase
 import com.ozan.cleanpokedex.extension.onErrorResource
 import com.ozan.cleanpokedex.extension.onSuccessResource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class PokemonDetailVm @Inject constructor(
@@ -21,19 +24,21 @@ class PokemonDetailVm @Inject constructor(
         }
     }
 
-    private val _state= MutableLiveData<PokemonDetailState>(PokemonDetailState.Loading)
-    val state: LiveData<PokemonDetailState> = _state
+    private val _state= MutableStateFlow<PokemonDetailState>(PokemonDetailState.Loading)
+    val state: StateFlow<PokemonDetailState> = _state
 
     private fun showDetail(pokemonName: String) =
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             getPokemonDetailUseCase.getDetail(pokemonName)
-                .onSuccessResource {
-                    val state= PokemonDetailState.Success(it)
-                    _state.postValue(state)
+                .onSuccessResource { uiModel ->
+                    _state.update {
+                        PokemonDetailState.Success(uiModel)
+                    }
                 }
                 .onErrorResource {
-                    val state= PokemonDetailState.Error(PokemonDetailError.CannotLoad())
-                    _state.postValue(state)
+                    _state.update {
+                        PokemonDetailState.Error(PokemonDetailError.CannotLoad())
+                    }
                 }
         }
 

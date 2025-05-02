@@ -9,7 +9,7 @@ import com.ozan.cleanpokedex.PokemonTestFake
 import org.junit.Before
 import org.junit.Test
 
-class PokemonDetailDataSourceTest {
+class PokemonPokemonDetailDataSourceTest {
 
     private lateinit var dataSource: PokemonDetailDataSource
 
